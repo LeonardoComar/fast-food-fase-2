@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos - Cozinha</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Pedidos - Cozinha</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Recebido</h2>
+        <div id="recebido">
+          <% orders.filter(order => order.status === 'Recebido').forEach(order => { %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Pedido #<%= order.id %></h5>
+                <ul>
+                  <% order.products.forEach(product => { %>
+                    <li><%= product.name %></li>
+                  <% }); %>
+                </ul>
+                <button class="btn btn-primary btn-advance" data-id="<%= order.id %>" data-status="Em preparação">Avançar</button>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h2>Em preparação</h2>
+        <div id="em-preparacao">
+          <% orders.filter(order => order.status === 'Em preparação').forEach(order => { %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Pedido #<%= order.id %></h5>
+                <ul>
+                  <% order.products.forEach(product => { %>
+                    <li><%= product.name %></li>
+                  <% }); %>
+                </ul>
+                <button class="btn btn-secondary btn-back" data-id="<%= order.id %>" data-status="Recebido">Voltar</button>
+                <button class="btn btn-primary btn-advance" data-id="<%= order.id %>" data-status="Pronto">Avançar</button>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h2>Pronto</h2>
+        <div id="pronto">
+          <% orders.filter(order => order.status === 'Pronto').forEach(order => { %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Pedido #<%= order.id %></h5>
+                <ul>
+                  <% order.products.forEach(product => { %>
+                    <li><%= product.name %></li>
+                  <% }); %>
+                </ul>
+                <button class="btn btn-secondary btn-back" data-id="<%= order.id %>" data-status="Em preparação">Voltar</button>
+                <button class="btn btn-primary btn-advance" data-id="<%= order.id %>" data-status="Finalizado">Avançar</button>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.btn-advance').click(function () {
+        const orderId = $(this).data('id');
+        const nextStatus = $(this).data('status');
+        $.ajax({
+          url: '/pedidos/atualizar',
+          method: 'POST',
+          data: {
+            orderId: orderId,
+            status: nextStatus
+          },
+          success: function () {
+            location.reload();
+          },
+          error: function () {
+            alert('Erro ao atualizar o pedido.');
+          }
+        });
+      });
+
+      $('.btn-back').click(function () {
+        const orderId = $(this).data('id');
+        const previousStatus = $(this).data('status');
+        $.ajax({
+          url: '/pedidos/atualizar',
+          method: 'POST',
+          data: {
+            orderId: orderId,
+            status: previousStatus
+          },
+          success: function () {
+            location.reload();
+          },
+          error: function () {
+            alert('Erro ao atualizar o pedido.');
+          }
+        });
+      });
+    });
+
+    setInterval(function() {
+    location.reload();
+  }, 60000);
+  </script>
+</body>
+</html>

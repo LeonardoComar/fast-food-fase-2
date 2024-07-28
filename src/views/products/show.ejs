@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>
+            <%= product.name %>
+          </h3>
+        </div>
+        <div class="card-body">
+          <p><strong>Categoria:</strong>
+            <%= product.category %>
+          </p>
+          <p><strong>Preço:</strong> R$ <%= product.price.toFixed(2) %>
+          </p>
+          <p><strong>Descrição:</strong>
+            <%= product.description %>
+          </p>
+          <p><strong>Criado em:</strong>
+            <%= new Date(product.createdAt).toLocaleString('pt-BR') %>
+          </p>
+          <p><strong>Atualizado em:</strong>
+            <%= new Date(product.updatedAt).toLocaleString('pt-BR') %>
+          </p>
+        </div>
+        <div class="card-footer text-end">
+          <a href="/produtos" class="btn btn-secondary">Voltar</a>
+          <button class="btn btn-danger" id="deleteProductBtn">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('deleteProductBtn').addEventListener('click', function () {
+    // Exibir uma caixa de diálogo de confirmação
+    const confirmDelete = confirm('Tem certeza de que deseja excluir este produto?');
+
+    // Verificar se o usuário confirmou a exclusão
+    if (confirmDelete) {
+      // Obter o ID do produto da URL
+      const productId = window.location.pathname.split('/').pop();
+
+      // Enviar uma solicitação DELETE para excluir o produto
+      fetch(`/produtos/${productId}`, {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log('Product deleted successfully');
+            // Redirecionar o usuário de volta para a página de produtos após a exclusão
+            window.location.href = '/produtos';
+          } else {
+            console.error('Failed to delete product');
+          }
+        })
+        .catch(error => console.error('Error deleting product:', error));
+    }
+  });
+</script>

@@ -1,0 +1,290 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Fazendo o Pedido</h1>
+  <hr>
+  <ul class="nav nav-tabs" id="productTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="lanche-tab" data-bs-toggle="tab" href="#lanche" role="tab" aria-controls="lanche"
+        aria-selected="true">Lanche</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="acompanhamento-tab" data-bs-toggle="tab" href="#acompanhamento" role="tab"
+        aria-controls="acompanhamento" aria-selected="false">Acompanhamento</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="bebida-tab" data-bs-toggle="tab" href="#bebida" role="tab" aria-controls="bebida"
+        aria-selected="false">Bebida</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="sobremesa-tab" data-bs-toggle="tab" href="#sobremesa" role="tab" aria-controls="sobremesa"
+        aria-selected="false">Sobremesa</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="productTabsContent">
+    <div class="tab-pane fade show active" id="lanche" role="tabpanel" aria-labelledby="lanche-tab">
+      <% if (products && products.length> 0) { %>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(function(product) { %>
+              <% if (product.category==='Lanche' ) { %>
+                <tr>
+                  <td>
+                    <%= product.name %>
+                  </td>
+                  <td>
+                    <%= product.description %>
+                  </td>
+                  <td>
+                    R$<%= product.price.toFixed(2) %>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-add" data-name="<%= product.name %>"
+                      data-price="<%= product.price %>">Adicionar</button>
+                  </td>
+                </tr>
+                <% } %>
+                  <% }); %>
+          </tbody>
+        </table>
+
+        <% } else { %>
+          <p class="mt-3">Nenhum produto encontrado.</p>
+          <% } %>
+    </div>
+
+    <div class="tab-pane fade" id="acompanhamento" role="tabpanel" aria-labelledby="acompanhamento-tab">
+      <% if (products && products.length> 0) { %>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(function(product) { %>
+              <% if (product.category==='Acompanhamento' ) { %>
+                <tr>
+                  <td>
+                    <%= product.name %>
+                  </td>
+                  <td>
+                    <%= product.description %>
+                  </td>
+                  <td>
+                    R$<%= product.price.toFixed(2) %>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-add" data-name="<%= product.name %>"
+                      data-price="<%= product.price %>">Adicionar</button>
+                  </td>
+                </tr>
+                <% } %>
+                  <% }); %>
+          </tbody>
+        </table>
+        <% } else { %>
+          <p class="mt-3">Nenhum produto encontrado.</p>
+          <% } %>
+    </div>
+
+    <div class="tab-pane fade" id="bebida" role="tabpanel" aria-labelledby="bebida-tab">
+      <% if (products && products.length> 0) { %>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(function(product) { %>
+              <% if (product.category==='Bebida' ) { %>
+                <tr>
+                  <td>
+                    <%= product.name %>
+                  </td>
+                  <td>
+                    <%= product.description %>
+                  </td>
+                  <td>
+                    R$<%= product.price.toFixed(2) %>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-add" data-name="<%= product.name %>"
+                      data-price="<%= product.price %>">Adicionar</button>
+                  </td>
+                </tr>
+                <% } %>
+                  <% }); %>
+          </tbody>
+        </table>
+        <% } else { %>
+          <p class="mt-3">Nenhum produto encontrado.</p>
+          <% } %>
+    </div>
+
+    <div class="tab-pane fade" id="sobremesa" role="tabpanel" aria-labelledby="sobremesa-tab">
+      <% if (products && products.length> 0) { %>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(function(product) { %>
+              <% if (product.category==='Sobremesa' ) { %>
+                <tr>
+                  <td>
+                    <%= product.name %>
+                  </td>
+                  <td>
+                    <%= product.description %>
+                  </td>
+                  <td>
+                    R$<%= product.price.toFixed(2) %>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-add" data-name="<%= product.name %>"
+                      data-price="<%= product.price %>">Adicionar</button>
+                  </td>
+                </tr>
+                <% } %>
+                  <% }); %>
+          </tbody>
+        </table>
+        <% } else { %>
+          <p class="mt-3">Nenhum produto encontrado.</p>
+          <% } %>
+    </div>
+  </div>
+  <div>
+    <h2 class="mt-4">Carrinho</h2>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Produto</th>
+          <th scope="col">Preço</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cartTableBody">
+        <!-- Aqui serão inseridos os itens do carrinho -->
+      </tbody>
+    </table>
+  </div>
+  <div class="col-5">
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr class="row">
+          <th class="col-3">Cliente</th>
+          <td class="col-9">
+            <%= user.name %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row">
+          <th class="col-3">Valor Total</th>
+          <td class="col-9">
+            <div id="valorTotal"></div>
+          </td>
+        </tr>
+        <tr class="row">
+          <th class="col-9"></th>
+          <td class="col-3">
+            <form action="/pedidos" method="POST">
+              <input type="hidden" name="total_price" id="total_price">
+              <input type="hidden" name="products" id="products">
+              <button type="submit" class="btn btn-success">Confirmar</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const addButtonElements = document.querySelectorAll(".btn-add");
+    const removeButtonElements = document.querySelectorAll(".btn-remove");
+
+    addButtonElements.forEach(function (button) {
+      button.addEventListener("click", function (event) {
+        const productName = event.target.dataset.name;
+        const productPrice = parseFloat(event.target.dataset.price);
+        addToCart(productName, productPrice);
+        updateTotalValue();
+      });
+    });
+
+    removeButtonElements.forEach(function (button) {
+      button.addEventListener("click", function (event) {
+        const row = event.target.closest("tr");
+        row.remove();
+        updateTotalValue();
+      });
+    });
+
+    function addToCart(name, price) {
+      const newRow = document.createElement("tr");
+      const productNameCell = document.createElement("td");
+      productNameCell.textContent = name;
+      const productPriceCell = document.createElement("td");
+      productPriceCell.textContent = "R$" + price.toFixed(2);
+      const removeButtonCell = document.createElement("td");
+      const removeButton = document.createElement("button");
+      removeButton.textContent = "Remover";
+      removeButton.classList.add("btn", "btn-danger", "btn-remove");
+      removeButton.addEventListener("click", function () {
+        newRow.remove();
+        updateTotalValue();
+      });
+      removeButtonCell.appendChild(removeButton);
+
+      newRow.appendChild(productNameCell);
+      newRow.appendChild(productPriceCell);
+      newRow.appendChild(removeButtonCell);
+
+      const cartTableBody = document.getElementById("cartTableBody");
+      cartTableBody.appendChild(newRow);
+    }
+
+    function updateTotalValue() {
+      const productPriceCells = document.querySelectorAll("#cartTableBody td:nth-child(2)");
+      let totalValue = 0;
+      let products = [];
+      productPriceCells.forEach(function (cell) {
+        const name = cell.parentElement.querySelector("td:first-child").textContent;
+        const price = parseFloat(cell.textContent.replace("R$", ""));
+        totalValue += price;
+        products.push({ name, price });
+      });
+      const totalValueElement = document.getElementById("valorTotal");
+      totalValueElement.textContent = "R$" + totalValue.toFixed(2);
+
+      const total_priceInput = document.getElementById("total_price");
+      total_priceInput.value = totalValue.toFixed(2);
+
+      const productsInput = document.getElementById("products");
+      productsInput.value = JSON.stringify(products);
+    }
+
+  });
+</script>

@@ -1,0 +1,5 @@
+# Arquivos de configuração
+.env
+
+# Dependências instaladas
+node_modules/

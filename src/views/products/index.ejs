@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <div class="row align-items-center">
+    <div class="col">
+      <h1 class="mb-4">Produtos</h1>
+    </div>
+    <div class="col-auto">
+      <a href="/produtos/novo" class="btn btn-success">Adicionar</a>
+    </div>
+  </div> 
+  <hr>
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Preço</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(product=> { %>
+        <tr>
+          <td>
+            <%= product.id %>
+          </td>
+          <td>
+            <%= product.name %>
+          </td>
+          <td>
+            <%= product.category %>
+          </td>
+          <td>
+            <%= product.price.toFixed(2) %>
+          </td>
+          <td class="text-end">
+            <!-- Exemplo de ações, você pode adicionar mais conforme necessário -->
+            <a href="/produtos/<%= product.id %>" class="btn btn-primary btn-sm">Ver</a>
+            <a href="/produtos/<%= product.id %>/editar" class="btn btn-warning btn-sm">Editar</a>
+          </td>
+        </tr>
+        <% }) %>
+    </tbody>
+  </table>
+</div>

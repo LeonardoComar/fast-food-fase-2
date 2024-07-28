@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>Adicionar Novo Produto</h3>
+        </div>
+        <div class="card-body">
+          <form action="/produtos" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nome:</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Categoria:</label>
+              <select class="form-select" id="category" name="category" required>
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <option value="Lanche">Lanche</option>
+                <option value="Acompanhamento">Acompanhamento</option>
+                <option value="Bebida">Bebida</option>
+                <option value="Sobremesa">Sobremesa</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Preço:</label>
+              <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Descrição:</label>
+              <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <div class="card-footer text-end">
+              <a href="/produtos" class="btn btn-secondary">Voltar</a>
+              <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
